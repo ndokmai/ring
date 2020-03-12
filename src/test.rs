@@ -377,7 +377,7 @@ fn from_hex_digit(d: u8) -> Result<u8, String> {
 }
 
 fn parse_test_case<'a>(
-    current_section: &mut String, lines: &mut Iterator<Item = &'a str>,
+    current_section: &mut String, lines: &mut dyn Iterator<Item = &'a str>,
 ) -> Option<TestCase> {
     let mut attributes = Vec::new();
 

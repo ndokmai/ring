@@ -42,7 +42,7 @@ impl signature::VerificationAlgorithm for EdDSAParameters {
         &self, public_key: untrusted::Input, msg: untrusted::Input, signature: untrusted::Input,
     ) -> Result<(), error::Unspecified> {
         let public_key = public_key.as_slice_less_safe();
-        let public_key: &[u8; ELEM_LEN] = public_key.try_into_()?;;
+        let public_key: &[u8; ELEM_LEN] = public_key.try_into_()?;
         let signature: &[u8; ELEM_LEN + SCALAR_LEN] = signature.as_slice_less_safe().try_into_()?;
         let (signature_r, signature_s): (&[u8; ELEM_LEN], &[u8; SCALAR_LEN]) = signature.into_();
 

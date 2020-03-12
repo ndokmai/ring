@@ -41,6 +41,7 @@
 //! </table>
 
 #![doc(html_root_url = "https://briansmith.org/rustdoc/")]
+#![feature(stdsimd)]
 #![allow(
     missing_copy_implementations,
     missing_debug_implementations,
@@ -53,7 +54,7 @@
 #![deny(
     missing_docs,
     trivial_numeric_casts,
-    unstable_features, // Used by `internal_benches`
+    //unstable_features, // Used by `internal_benches`
     unused_qualifications,
     variant_size_differences,
 )]
