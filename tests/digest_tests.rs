@@ -15,7 +15,6 @@
 #![forbid(
     anonymous_parameters,
     box_pointers,
-    legacy_directory_ownership,
     missing_copy_implementations,
     missing_debug_implementations,
     missing_docs,
@@ -270,7 +269,7 @@ macro_rules! test_large_digest {
     };
 }
 
-/// XXX: This test is too slow on Android ARM.
+// XXX: This test is too slow on Android ARM.
 #[cfg(any(not(target_os = "android"), not(target_arch = "arm")))]
 test_large_digest!(
     digest_test_large_digest_sha1,

@@ -264,7 +264,9 @@ fn detect_implementation(cpu: cpu::Features) -> Implementation {
 
     #[cfg(target_env = "sgx")]
     {
-        panic!("No GCM implementation available!")
+        //TODO Fix this. Make sure that CLMUL detection works.
+        return Implementation::CLMUL;
+        //panic!("No GCM implementation available!")
     }
 }
 

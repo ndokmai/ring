@@ -15,7 +15,6 @@
 #![forbid(
     anonymous_parameters,
     box_pointers,
-    legacy_directory_ownership,
     missing_copy_implementations,
     missing_debug_implementations,
     missing_docs,
@@ -46,8 +45,6 @@ fn rsa_from_pkcs8_test() {
     test::run(
         test_file!("rsa_from_pkcs8_tests.txt"),
         |section, test_case| {
-            use std::error::Error;
-
             assert_eq!(section, "");
 
             let input = test_case.consume_bytes("Input");
@@ -59,7 +56,7 @@ fn rsa_from_pkcs8_test() {
                 (Ok(_), None) => (),
                 (Err(e), None) => panic!("Failed with error \"{}\", but expected to succeed", e),
                 (Ok(_), Some(e)) => panic!("Succeeded, but expected error \"{}\"", e),
-                (Err(actual), Some(expected)) => assert_eq!(actual.description(), expected),
+                (Err(actual), Some(expected)) => assert_eq!(actual.to_string(), expected),
             };
 
             Ok(())

@@ -278,7 +278,9 @@ fn detect_implementation(cpu_features: cpu::Features) -> Implementation {
 
     #[cfg(target_env = "sgx")]
     {
-        panic!("No AES implementation available!")
+        //TODO Fix this. Make sure that AES detection works.
+        return Implementation::HWAES;
+        //panic!("No AES implementation available!")
     }
 }
 

@@ -15,7 +15,6 @@
 #![forbid(
     anonymous_parameters,
     box_pointers,
-    legacy_directory_ownership,
     missing_copy_implementations,
     missing_debug_implementations,
     missing_docs,
@@ -45,8 +44,6 @@ fn ecdsa_from_pkcs8_test() {
     test::run(
         test_file!("ecdsa_from_pkcs8_tests.txt"),
         |section, test_case| {
-            use std::error::Error;
-
             assert_eq!(section, "");
 
             let curve_name = test_case.consume_string("Curve");
@@ -86,7 +83,7 @@ fn ecdsa_from_pkcs8_test() {
                 (Ok(_), None) => (),
                 (Err(e), None) => panic!("Failed with error \"{}\", but expected to succeed", e),
                 (Ok(_), Some(e)) => panic!("Succeeded, but expected error \"{}\"", e),
-                (Err(actual), Some(expected)) => assert_eq!(actual.description(), expected),
+                (Err(actual), Some(expected)) => assert_eq!(actual.to_string(), expected),
             };
 
             match (
@@ -96,7 +93,7 @@ fn ecdsa_from_pkcs8_test() {
                 (Ok(_), None) => (),
                 (Err(e), None) => panic!("Failed with error \"{}\", but expected to succeed", e),
                 (Ok(_), Some(e)) => panic!("Succeeded, but expected error \"{}\"", e),
-                (Err(actual), Some(expected)) => assert_eq!(actual.description(), expected),
+                (Err(actual), Some(expected)) => assert_eq!(actual.to_string(), expected),
             };
 
             assert!(signature::EcdsaKeyPair::from_pkcs8(other_fixed, input).is_err());
